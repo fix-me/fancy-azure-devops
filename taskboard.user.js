@@ -2,8 +2,8 @@
 // @name         Azure DevOps Fancy Taskboard
 // @namespace    https://github.com/fix-me/
 // @version      0.1
-// @updateURL    https://raw.githubusercontent.com/fix-me/fancy-azure-devops/master/fancy-azure-devops.user.js
-// @downloadURL  https://raw.githubusercontent.com/fix-me/fancy-azure-devops/master/fancy-azure-devops.user.js
+// @updateURL    https://raw.githubusercontent.com/fix-me/fancy-azure-devops/master/taskboard.user.js
+// @downloadURL  https://raw.githubusercontent.com/fix-me/fancy-azure-devops/master/taskboard.user.js
 // @description  On the Azure DevOps taskboard, highlight tasks with tags 'AC', 'frontend', 'backend', 'machine', 'devops'
 // @author       fix-me
 // @match        https://dev.azure.com/*/taskboard/*
