@@ -254,7 +254,6 @@
             const tags = getTaskElemTags(taskElem);
 
             const intersectionTags = tags.filter(tag => favoriteTags.includes(tag));
-            console.log(intersectionTags);
             if (intersectionTags.length > 0) {
                 // first tag defined task color
                 const color = getTagColor(intersectionTags[0]);
