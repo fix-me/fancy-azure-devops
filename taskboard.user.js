@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Azure DevOps Fancy Taskboard
 // @namespace    https://github.com/fix-me/
-// @version      0.3
+// @version      0.4
 // @updateURL    https://raw.githubusercontent.com/fix-me/fancy-azure-devops/master/taskboard.user.js
 // @downloadURL  https://raw.githubusercontent.com/fix-me/fancy-azure-devops/master/taskboard.user.js
 // @description  On the Azure DevOps taskboard, highlight tasks with tags 'AC', 'frontend', 'backend', 'machine', 'devops'
@@ -123,8 +123,7 @@
     const isTask = node => node?.parentNode.getAttribute("aria-label").indexOf("Task") === 0;
 
     const selectTaskElems = () => [
-        ...new Set(Array.from(document.getElementsByClassName("tag-box"))
-            .map(t => t.closest(".tbTileContent"))
+        ...new Set(Array.from(document.getElementsByClassName("tbTileContent"))
             .filter(isTask))
     ];
 
@@ -218,12 +217,39 @@
         }
 
         selectWrapper.appendChild(select);
+
+        const abortButton = document.createElement("button");
+        abortButton.innerText = "Abort";
+        abortButton.onclick = () => {
+            document.body.removeChild(overlay);
+        }
+
+        selectWrapper.appendChild(abortButton);
     }
 
     const addTaskElemAdder = (taskElem) => {
-        const ul = taskElem.querySelector(".tags-items-container ul")
+        let ul = taskElem.querySelector(".tags-items-container ul")
 
-        if (!!ul.querySelector(".add-tag")) return;
+        if (!ul) {
+            const tagsFieldContainer = document.createElement("div");
+            tagsFieldContainer.classList.add("tags");
+            tagsFieldContainer.classList.add("field-container");
+
+            const tfsTags = document.createElement("div");
+            tfsTags.classList.add("tfs-tags");
+            tagsFieldContainer.appendChild(tfsTags);
+
+            const tagsItemsContainer = document.createElement("div");
+            tagsItemsContainer.classList.add("tags-items-container");
+            tfsTags.appendChild(tagsItemsContainer);
+
+            ul = document.createElement("ul");
+            tagsItemsContainer.appendChild(ul);
+
+            taskElem.appendChild(tagsFieldContainer);
+        }
+
+        if (!ul || !!ul.querySelector(".add-tag")) return;
 
         const li = document.createElement("li");
         li.classList.add("tag-item");
