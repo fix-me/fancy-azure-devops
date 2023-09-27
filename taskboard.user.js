@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Azure DevOps Fancy Taskboard
 // @namespace    https://github.com/fix-me/
-// @version      0.4
+// @version      0.5
 // @updateURL    https://raw.githubusercontent.com/fix-me/fancy-azure-devops/master/taskboard.user.js
 // @downloadURL  https://raw.githubusercontent.com/fix-me/fancy-azure-devops/master/taskboard.user.js
 // @description  On the Azure DevOps taskboard, highlight tasks with tags 'AC', 'frontend', 'backend', 'machine', 'devops'
@@ -16,7 +16,7 @@
 
     // Your code here...
     let tags = [];
-    const favoriteTags = ["AC", "frontend", "backend", "machine", "devops", "Cloud2Cloud", "optional"];
+    const favoriteTags = ["AC", "frontend", "backend", "native", "machine", "devops", "Cloud2Cloud", "optional"];
 
     const getHomeURL = () => window.dataProviders.data["ms.vss-tfs-web.header-action-data"].suiteHomeUrl;
     const getProjectID = () => window.dataProviders.data["ms.vss-work-web.agile-backlog-configuration-data-provider"].projectId;
@@ -155,6 +155,7 @@
             case "AC": return "#ebe66c";
             case "frontend": return "#8af086";
             case "backend": return "#ff7063";
+            case "native": return "#ffa0f0";
             case "machine": return "#80ffff";
             case "devops": return "#cfc8ba";
             case "Cloud2Cloud": return "#C39BD3";
